@@ -1,1 +1,11 @@
 {{> nav}}
+
+{{#if articles.length}}
+<div class ="container">
+<div class="articles-saved">
+  {{#each articles}}
+    <h2><a class="articles-link" href="{{this.articles.link}}">{{this.articles.title}}</a></h2>
+  {{/each}}
+</div>
+</div>
+{{/if}}

@@ -3,13 +3,6 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const db = require("../models");
 
-// When the server starts, create and save a new User document to the db
-// The "unique" rule in the User model's schema will prevent duplicate users from being added to the server
-db.User.create({ name: "The Coolest User Ever" })
-  .catch(function(err) {
-    console.log(err.message);
-  });
-
 // A GET route for scraping the echoJS website
 router.get("/scrape", function(req, res) {
   // First, we grab the body of the html with request
@@ -69,7 +62,33 @@ router.get("/", function(req, res) {
 
 router.get("/saved", function(req, res) {
   //method that pulls saved articles
+  const obj = {};
 
-  res.render("saved");
+  db.User.find()
+    .populate("articles")
+    .then(function(articles) {
+      console.log(articles);
+      obj.articles = articles;
+      res.render("saved", obj);
+    })
+    .catch(function(err) {
+      console.log(err);
+      res.send(err);
+    });
+});
+
+router.post("/savedArticles", function(req, res) {
+  db.User.findOneAndUpdate(
+    { name: "The Coolest User Ever" },
+    { $push: { articles: req.body.id } },
+    { new: true }
+  )
+    .then(function() {
+      res.send("Article Saved :)");
+    })
+    .catch(function(err) {
+      // If an error occurs, send it back to the client
+      res.send("Article was not saved, please try again");
+    });
 });
 module.exports = router;
