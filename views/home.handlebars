@@ -2,12 +2,12 @@
 
 {{#if articles.length}}
 <div class ="container">
-<ul class="articles-list">
+<div class="articles-list">
   {{#each articles}}
-    <li>{{this.title}}</li>
-    <li>{{this.link}}</li>
+    <h2><a class="articles-link" href="{{this.link}}">{{this.title}}</a></h2>
+    <button type="button" class="btn btn-secondary btn-lg">Save Article</button>
   {{/each}}
-</ul>
+</div>
 </div>
 {{/if}}
 

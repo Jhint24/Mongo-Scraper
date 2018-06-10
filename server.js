@@ -4,13 +4,18 @@ const bodyParser = require("body-parser");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 const path = require("path");
+const db = require("./models")
 
 const PORT = 8080;
 
 // Initialize Express
 const app = express();
 
-// Configure middleware
+// When the server starts, create and save a new User document to the db
+// The "unique" rule in the User model's schema will prevent duplicate users from being added to the server
+db.User.create({ name: "The Coolest User Ever" }).catch(function(err) {
+  console.log(err.message);
+});
 
 // Use morgan logger for logging requests
 app.use(logger("dev"));
