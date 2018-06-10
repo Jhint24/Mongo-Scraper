@@ -1,2 +1,15 @@
 {{> nav}}
 
+{{#if articles.length}}
+<div class ="container">
+<ul class="articles-list">
+  {{#each articles}}
+    <li>{{this.title}}</li>
+    <li>{{this.link}}</li>
+  {{/each}}
+</ul>
+</div>
+{{/if}}
+
+
+
