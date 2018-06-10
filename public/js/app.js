@@ -12,7 +12,6 @@ $(".saved-btn").on("click", function() {
   var savedArticleID = $(this).attr("data-id");
   //   console.log($(this));
   //   console.log(savedArticleID);
-  $.post( "/savedArticles", {id: savedArticleID}, function(data) {
-    
-  });
+  $.post("/savedArticles", { id: savedArticleID }, function(data) {});
 });
+

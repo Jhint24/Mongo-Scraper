@@ -78,11 +78,16 @@ router.get("/saved", function(req, res) {
 });
 
 router.post("/savedArticles", function(req, res) {
+    console.log("Link", req.body.link);
+    console.log("Title", req.body.title);
   db.User.findOneAndUpdate(
     { name: "The Coolest User Ever" },
-    { $push: { articles: req.body.id } },
+    { $push: { articles: req.body.id }},
+    // { $push: { articles: req.body.title }},
+    // { $push: { articles: req.body.link }},
     { new: true }
   )
+  
     .then(function() {
       res.send("Article Saved :)");
     })

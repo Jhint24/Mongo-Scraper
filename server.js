@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 const path = require("path");
-const db = require("./models")
+const db = require("./models");
 
 const PORT = 8080;
 
