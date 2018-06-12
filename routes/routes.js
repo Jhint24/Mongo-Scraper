@@ -13,17 +13,21 @@ router.get("/scrape", function(req, res) {
       var $ = cheerio.load(response.data);
 
       // Now, we grab every h2 within an article tag, and do the following:
-      $("article h2").each(function(i, element) {
+      $(".story").each(function(i, element) {
         // Save an empty result object
         var result = {};
 
         // Add the text and href of every link, and save them as properties of the result object
-        result.title = $(this)
+        result.title = $(this).find("h2")
           .children("a")
           .text();
         result.link = $(this)
           .children("a")
           .attr("href");
+        result.summary = $(this)
+          .find("summary")
+          .text();
+
 
         // Create a new Article using the `result` object built from scraping
         db.Article.update(
@@ -83,7 +87,7 @@ router.get("/saved", function(req, res) {
   //method that pulls saved articles
   const obj = {};
 
-  db.User.find({name: "The Coolest User Ever"})
+  db.User.find()
     .populate("articles")
     .then(function(result) {
       obj.articles = result[0].articles;

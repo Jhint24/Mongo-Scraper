@@ -6,6 +6,9 @@
   {{#each articles}}
     <h2><a class="articles-link" href="{{this.link}}">{{this.title}}</a></h2>
     <button type="button" class="btn btn-secondary btn-lg saved-btn" data-id="{{this._id}}">Save Article</button>
+        							{{#if summary}}
+							<p class="card-text">{{summary}}</p>
+							{{/if}}
     <h3 id= "button-gone"></h3>
   {{/each}}
 </div>
