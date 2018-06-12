@@ -60,23 +60,6 @@ router.get("/", function(req, res) {
     });
 });
 
-router.get("/saved", function(req, res) {
-  //method that pulls saved articles
-  const obj = {};
-
-  db.User.find()
-    .populate("savedArticles")
-    .then(function(result) {
-      obj.articles = result[0].articles;
-      res.render("saved", obj);
-      console.log(result[0].articles);
-    })
-    .catch(function(err) {
-      console.log(err);
-      res.send(err);
-    });
-});
-
 router.post("/savedArticles", function(req, res) {
     console.log("Link", req.body.link);
     console.log("Title", req.body.title);
@@ -96,4 +79,21 @@ router.post("/savedArticles", function(req, res) {
       res.send("Article was not saved, please try again");
     });
 });
+router.get("/saved", function(req, res) {
+  //method that pulls saved articles
+  const obj = {};
+
+  db.User.find({name: "The Coolest User Ever"})
+    .populate("articles")
+    .then(function(result) {
+      obj.articles = result[0].articles;
+      res.render("saved", obj);
+      console.log(result[0].articles);
+    })
+    .catch(function(err) {
+      console.log(err);
+      res.send(err);
+    });
+});
+
 module.exports = router;
