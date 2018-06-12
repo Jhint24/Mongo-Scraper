@@ -65,11 +65,11 @@ router.get("/saved", function(req, res) {
   const obj = {};
 
   db.User.find()
-    .populate("articles")
-    .then(function(articles) {
-      console.log(articles);
-      obj.articles = articles;
+    .populate("savedArticles")
+    .then(function(result) {
+      obj.articles = result[0].articles;
       res.render("saved", obj);
+      console.log(result[0].articles);
     })
     .catch(function(err) {
       console.log(err);

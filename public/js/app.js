@@ -13,5 +13,8 @@ $(".saved-btn").on("click", function() {
   //   console.log($(this));
   //   console.log(savedArticleID);
   $.post("/savedArticles", { id: savedArticleID }, function(data) {});
+  $(this).remove();
+  $("#button-gone").replaceWith("Article Saved");
+
 });
 
