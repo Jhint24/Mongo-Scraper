@@ -5,6 +5,7 @@
 <div class="articles-saved">
   {{#each articles}}
     <h2><a class="articles-link" href="{{this.link}}">{{this.title}}</a></h2>
+   <button type="button" class="btn btn-secondary btn-lg remove-btn" data-id="{{this._id}}">Remove Article</button>
   {{/each}}
 </div>
 </div>
