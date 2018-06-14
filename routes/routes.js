@@ -100,4 +100,14 @@ router.get("/saved", function(req, res) {
     });
 });
 
+router.delete('/removeSaved',function (req,res) {
+  db.User.findOneAndRemove({_id:req.params.id},function(error, huh) {
+    if (error) 
+    console.log(error)
+  }
+   )
+    .then(() => res.send('Article Removed'))
+    .catch(() => res.send('Article not removed, please try again'));
+});
+
 module.exports = router;

@@ -18,3 +18,19 @@ $(".saved-btn").on("click", function() {
 
 });
 
+
+$(".remove-btn").on("click", function() {
+  var savedArticleID = $(this).attr("data-id");
+  //   console.log($(this));
+  //   console.log(savedArticleID);
+  $(this).remove();
+  $.ajax({
+    url: "/removeSaved",
+    data: { id: savedArticleID },
+    type: "DELETE",
+    success: 
+     function(res) {
+      $("#button-gone").replaceWith("Article Removed");
+     }
+    });
+  });
