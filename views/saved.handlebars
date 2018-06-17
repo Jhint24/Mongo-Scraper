@@ -4,8 +4,10 @@
 <div class ="container">
 <div class="articles-saved">
   {{#each articles}}
+  <div class="remove-saved">
     <h2><a class="articles-link" href="{{this.link}}">{{this.title}}</a></h2>
    <button type="button" class="btn btn-secondary btn-lg remove-btn" data-id="{{this._id}}">Remove Article</button>
+   </div>
        <h3 id= "button-gone"></h3>
   {{/each}}
 </div>

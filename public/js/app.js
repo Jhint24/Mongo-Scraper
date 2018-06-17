@@ -8,29 +8,29 @@
 //how to get user id
 
 //
-$(".saved-btn").on("click", function() {
-  var savedArticleID = $(this).attr("data-id");
+$('.saved-btn').on('click', function() {
+  var savedArticleID = $(this).attr('data-id');
   //   console.log($(this));
   //   console.log(savedArticleID);
-  $.post("/savedArticles", { id: savedArticleID }, function(data) {});
+  $.post('/savedArticles', { id: savedArticleID }, function(data) {});
   $(this).remove();
-  $("#button-gone").replaceWith("Article Saved");
-
+  $('#button-gone').replaceWith('Article Saved');
 });
 
-
-$(".remove-btn").on("click", function() {
-  var savedArticleID = $(this).attr("data-id");
+$('.remove-btn').on('click', function() {
+  var self = $(this);
+  var savedArticleID = $(this).attr('data-id');
   //   console.log($(this));
   //   console.log(savedArticleID);
-  $(this).remove();
   $.ajax({
-    url: "/removeSaved",
+    url: '/removeSaved',
     data: { id: savedArticleID },
-    type: "DELETE",
-    success: 
-     function(res) {
-      $("#button-gone").replaceWith("Article Removed");
-     }
-    });
+    type: 'DELETE',
+    success: function(res) {
+      console.log(self.parent());
+      self.parent().remove();
+      $('#button-gone').replaceWith('Article Removed');
+    }
   });
+});
+//wrap h2 and button and remove parent
